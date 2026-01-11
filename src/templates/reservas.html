@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Reservas</h2>
+<table>
+  <tr><th>ID</th><th>Cliente</th><th>Destino</th><th>Vagas</th><th>Ações</th></tr>
+  {% for r in reservas %}
+  <tr>
+    <td>{{ r['id'] }}</td>
+    <td>{{ r['cliente'] }}</td>
+    <td>{{ r['cidade'] }} / {{ r['pais'] }}</td>
+    <td>{{ r['vagas'] if r.get('vagas') is not none else r.get('vagas_reservadas') }}</td>
+    <td>
+      <a href="/reservas/{{ r['id'] }}/edit">Editar</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+<h3>Nova Reserva</h3>
+<form method="post">
+  <label>Cliente:
+    <select name="cliente_id">
+      {% for c in clientes %}
+      <option value="{{ c['id'] }}">{{ c['nome'] }}</option>
+      {% endfor %}
+    </select>
+  </label><br>
+  <label>Destino:
+    <select name="destino_id">
+      {% for d in destinos %}
+      <option value="{{ d['id'] }}">{{ d['cidade'] }} / {{ d['pais'] }}</option>
+      {% endfor %}
+    </select>
+  </label><br>
+  <label>Vagas: <input name="vagas" type="number" value="1"></label><br>
+  <button type="submit">Reservar</button>
+</form>
+{% endblock %}

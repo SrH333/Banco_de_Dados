@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Clientes</h2>
+<table>
+  <tr><th>ID</th><th>Nome</th><th>Email</th><th>Telefone</th><th>Ações</th></tr>
+  {% for c in clientes %}
+  <tr>
+    <td>{{ c['id'] }}</td>
+    <td>{{ c['nome'] }}</td>
+    <td>{{ c['email'] }}</td>
+    <td>{{ c['telefone'] }}</td>
+    <td>
+      <a href="/clientes/{{ c['id'] }}/edit">Editar</a>
+      <form method="post" action="/clientes/{{ c['id'] }}/delete" style="display:inline">
+        <button type="submit" onclick="return confirm('Confirmar exclusão do cliente?')">Excluir</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+<h3>Novo Cliente</h3>
+<form method="post">
+  <label>Nome: <input name="nome" required></label><br>
+  <label>Email: <input name="email"></label><br>
+  <label>Telefone: <input name="telefone"></label><br>
+  <button type="submit">Criar</button>
+</form>
+{% endblock %}

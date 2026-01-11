@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Editar Destino</h2>
+<form method="post">
+  <label>Cidade: <input name="cidade" value="{{ destino['cidade'] }}" required></label><br>
+  <label>País: <input name="pais" value="{{ destino['pais'] }}" required></label><br>
+  <label>Vagas: <input name="vagas" type="number" value="{{ destino.get('vagas') or destino.get('vagas_disponiveis') or destino.get('vagas_total') or 0 }}"></label><br>
+  <button type="submit">Salvar</button>
+  <a href="/destinos">Cancelar</a>
+</form>
+{% endblock %}

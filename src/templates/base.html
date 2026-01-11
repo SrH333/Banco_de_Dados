@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sistema de Viagens</title>
+    <style>
+      body{font-family:Arial,Helvetica,sans-serif;margin:20px}
+      .container{max-width:900px;margin:0 auto}
+      header{display:flex;justify-content:space-between;align-items:center}
+      nav a{margin-right:10px}
+      table{width:100%;border-collapse:collapse;margin-top:10px}
+      th,td{border:1px solid #ddd;padding:8px}
+      th{background:#f4f4f4}
+      form{margin-top:10px}
+      .flash{padding:8px;margin:8px 0}
+      .success{background:#e6ffed;border:1px solid #b6f0c6}
+      .danger{background:#ffe6e6;border:1px solid #f0b6b6}
+      .warning{background:#fff4d6;border:1px solid #f0e6b6}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Sistema de Viagens</h1>
+        <nav>
+          <a href="/clientes">Clientes</a>
+          <a href="/destinos">Destinos</a>
+          <a href="/reservas">Reservas</a>
+        </nav>
+      </header>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, msg in messages %}
+            <div class="flash {{ category }}">{{ msg }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>

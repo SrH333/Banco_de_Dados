@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Destinos</h2>
+<table>
+  <tr><th>ID</th><th>Cidade</th><th>País</th><th>Vagas</th><th>Ações</th></tr>
+  {% for d in destinos %}
+  <tr>
+    <td>{{ d['id'] }}</td>
+    <td>{{ d['cidade'] }}</td>
+    <td>{{ d['pais'] }}</td>
+    <td>{{ d['vagas'] if d.get('vagas') is not none else (d.get('vagas_disponiveis') if d.get('vagas_disponiveis') is not none else d.get('vagas_total')) }}</td>
+    <td>
+      <a href="/destinos/{{ d['id'] }}/edit">Editar</a>
+      <form method="post" action="/destinos/{{ d['id'] }}/delete" style="display:inline">
+        <button type="submit" onclick="return confirm('Confirmar exclusão do destino?')">Excluir</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+<h3>Novo Destino</h3>
+<form method="post">
+  <label>Cidade: <input name="cidade" required></label><br>
+  <label>País: <input name="pais" required></label><br>
+  <label>Vagas: <input name="vagas" type="number" value="0"></label><br>
+  <button type="submit">Criar</button>
+</form>
+{% endblock %}

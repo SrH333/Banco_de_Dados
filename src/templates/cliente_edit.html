@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Editar Cliente</h2>
+<form method="post">
+  <label>Nome: <input name="nome" value="{{ cliente['nome'] }}" required></label><br>
+  <label>Email: <input name="email" value="{{ cliente['email'] or '' }}"></label><br>
+  <label>Telefone: <input name="telefone" value="{{ cliente['telefone'] or '' }}"></label><br>
+  <button type="submit">Salvar</button>
+  <a href="/clientes">Cancelar</a>
+</form>
+{% endblock %}
