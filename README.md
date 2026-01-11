@@ -114,4 +114,3 @@ O menu principal oferece: `Clientes`, `Destinos` e `Reservas`.
 - Execute sempre a partir da raiz do projeto (`python -m src.app`) para que os imports relativos funcionem corretamente.
 - Para depurar, verifique `viagens.db` com um cliente SQLite (DB Browser for SQLite, etc.).
 
-Se quiser, posso também adicionar instruções de contribution, testes automatizados ou um script `make`/`tasks` para facilitar execução.
