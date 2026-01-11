@@ -88,26 +88,30 @@ Versão CLI (original):
 python -m src.app
 ```
 
-## Observações sobre o banco
+Ou, dentro da pasta `src`:
 
-- O arquivo SQLite `viagens.db` fica na raiz do projeto. Faça backup antes de alterações destrutivas.
-- A aplicação web e a CLI usam o mesmo banco.
+```bash
+cd src
+python app.py
+```
 
-## Desenvolvimento e contribuição
+O menu principal oferece: `Clientes`, `Destinos` e `Reservas`.
 
-Pull requests são bem-vindos. Sugestões úteis:
+- Em `Reservas` há a opção **3. Editar/Excluir reserva** que permite:
+	- Aumentar número de vagas reservadas (se houver disponibilidade)
+	- Diminuir número de vagas reservadas (devolve vagas ao destino)
+	- Excluir reserva (devolve todas as vagas ao destino)
 
-- adicionar autenticação e autorização
-- melhorar validações de entrada no front e back-end
-- testes automatizados e CI
-- melhorias de UI/UX
+## Estrutura do projeto
+- [src/app.py](src/app.py) — ponto de entrada e menus
+- [src/db.py](src/db.py) — conexão e migração do banco
+- [src/clientes.py](src/clientes.py) — operações de clientes
+- [src/destinos.py](src/destinos.py) — operações de destinos
+- [src/reservas.py](src/reservas.py) — operações de reservas
+- `viagens.db` — arquivo SQLite (gerado após migrar)
 
-Se quiser, posso criar uma branch, preparar um commit com estas mudanças e abrir um PR de exemplo.
+## Dicas
+- Execute sempre a partir da raiz do projeto (`python -m src.app`) para que os imports relativos funcionem corretamente.
+- Para depurar, verifique `viagens.db` com um cliente SQLite (DB Browser for SQLite, etc.).
 
-## Licença
-
-Adicione a licença do projeto aqui (por exemplo: MIT).
-
----
-
-Se desejar, eu faço o commit automático com mensagem padrão e crio uma branch; quer que eu faça isso agora?
+Se quiser, posso também adicionar instruções de contribution, testes automatizados ou um script `make`/`tasks` para facilitar execução.
